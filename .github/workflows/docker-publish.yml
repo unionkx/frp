@@ -65,11 +65,3 @@ jobs:
         env:
           COSIGN_EXPERIMENTAL: "true"
         run: echo "${{ steps.meta.outputs.tags }}" | xargs -I {} cosign sign {}@${{ steps.build-and-push.outputs.digest }}
-
-      - name: Delete workflow runs
-        uses: Mattraks/delete-workflow-runs@v2
-        with:
-          token: ${{ github.token }}
-          repository: ${{ github.repository }}
-          retain_days: 3
-          keep_minimum_runs: 2
