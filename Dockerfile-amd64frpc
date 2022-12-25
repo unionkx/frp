@@ -1,4 +1,4 @@
-FROM amd64/alpine:latest
+FROM alpine:latest
 LABEL maintainer="unionkx"
 ENV FRP_VERSION 0.46.0
 RUN cd /root \
