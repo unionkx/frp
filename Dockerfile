@@ -1,7 +1,7 @@
-FROM debian:testing
+FROM debian:latest
 LABEL maintainer="unionkx"
 ENV FRP_VERSION 0.47.0
-RUN cd /root \
+RUN cd /etc \
     &&  wget --no-check-certificate -c https://github.com/fatedier/frp/releases/download/v${FRP_VERSION}/frp_${FRP_VERSION}_linux_amd64.tar.gz \
     &&  tar zxvf frp_${FRP_VERSION}_linux_amd64.tar.gz  \
     &&  cd frp_${FRP_VERSION}_linux_amd64/ \
