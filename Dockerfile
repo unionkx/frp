@@ -1,4 +1,4 @@
-FROM debian:testing-slim
+FROM debian:testing:latest
 LABEL maintainer="unionkx"
 ENV FRP_VERSION 0.47.0
 RUN cd /root \
