@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM debian:testing-slim
 LABEL maintainer="unionkx"
 ENV FRP_VERSION 0.47.0
 RUN cd /root \
