@@ -12,7 +12,7 @@ RUN set -eux \
     && make \
     && cp -rfv bin conf /workspace/ \
     && apt-get -qqy --purge autoremove \
-    && apt-get -qqy clean \
+    && apt-get -qqy autoclean \
 
 FROM debian:testing-slim
 COPY --from=builder /workspace/bin/frps /usr/bin/
