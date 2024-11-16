@@ -1,4 +1,4 @@
-FROM debian:12.8-slim
+FROM debian:testing-slim AS builder
 ENV FRP_VERSION=0.61.0
 RUN mkdir /workspace
 WORKDIR /workspace
@@ -16,7 +16,8 @@ RUN set -eux \
     && rm -rf /var/lib/apt/lists/* \
     && rm -rf /tmp/* \
     && rm -rf /var/tmp/*
-    
+
+FROM debian:testing-slim
 COPY --from=builder /workspace/bin/frps /usr/bin/
 COPY --from=builder /workspace/conf/frps.toml /etc/frp/
 ENTRYPOINT ["/usr/bin/frps"]
