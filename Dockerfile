@@ -13,9 +13,6 @@ RUN set -eux \
     && cp -rfv bin conf /workspace/ \
     && apt-get -qqy --purge autoremove \
     && apt-get -qqy clean \
-    && rm -rf /var/lib/apt/lists/* \
-    && rm -rf /tmp/* \
-    && rm -rf /var/tmp/*
 
 FROM debian:testing-slim
 COPY --from=builder /workspace/bin/frps /usr/bin/
