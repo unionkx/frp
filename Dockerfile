@@ -8,7 +8,7 @@ RUN set -eux \
     make \
     && wget -c https://github.com/fatedier/frp/releases/download/v${FRP_VERSION}/frp_${FRP_VERSION}_linux_amd64.tar.gz \
     && tar zxvf frp_${FRP_VERSION}_linux_amd64.tar.gz \
-    && cd frp-${FRP_VERSION} \
+    && cd frp_${FRP_VERSION}_linux_amd64/ \
     && make \
     && cp -rfv bin conf /workspace/ \
     && apt-get -qqy --purge autoremove \
