@@ -1,4 +1,4 @@
-FROM debian:testing-slim AS builder
+FROM debian:testing-slim
 ENV FRP_VERSION=0.61.0
 RUN mkdir /workspace
 WORKDIR /workspace
@@ -14,8 +14,7 @@ RUN set -eux \
     && apt-get -qqy --purge autoremove \
     && apt-get -qqy autoclean \
 
-FROM debian:testing-slim
-COPY --from=builder /workspace/bin/frps /usr/bin/
-COPY --from=builder /workspace/conf/frps.toml /etc/frp/
-ENTRYPOINT ["/usr/bin/frps"]
-CMD ["-c", "/etc/frp/frps.toml"]
+COPY --from=builder /workspace/bin/frpc /usr/bin/
+COPY --from=builder /workspace/conf/frpc.toml /etc/frp/
+ENTRYPOINT ["/usr/bin/frpc"]
+CMD ["-c", "/etc/frp/frpc.toml"]
