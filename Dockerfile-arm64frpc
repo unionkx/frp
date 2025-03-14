@@ -1,6 +1,6 @@
 FROM alpine:latest
 LABEL maintainer="unionkx"
-ENV FRP_VERSION 0.60.0
+ENV FRP_VERSION 0.61.2
 RUN cd /root \
     &&  wget --no-check-certificate -c https://github.com/fatedier/frp/releases/download/v${FRP_VERSION}/frp_${FRP_VERSION}_linux_arm64.tar.gz \
     &&  tar zxvf frp_${FRP_VERSION}_linux_arm64.tar.gz  \
