@@ -1,6 +1,8 @@
 name: DockerBP
 
 on:
+  repository_dispatch:
+  workflow_dispatch:
   schedule:
     - cron: 16 0 * * 2
   push:
