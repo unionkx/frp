@@ -1,4 +1,4 @@
-name: DockerBP
+name: Docker
 
 on:
   repository_dispatch:
