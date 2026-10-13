@@ -3,5 +3,5 @@
 
 
 ```
-docker pull ghcr.io/unionkx/frpc:main
+docker pull ghcr.io/unionkx/frp:main
 ```
