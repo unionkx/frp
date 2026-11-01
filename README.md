@@ -11,9 +11,9 @@ docker run \
     -d \
     --name frp \
     -p 7000:7000 \
-    -v $(pwd)/frpc.ini:/etc/frpc.ini \
+    -v $(pwd)/frpc.ini:/etc/frpc.toml \
     unionkx/frp \
-    frpc -c /etc/frpc.ini
+    frpc -c /etc/frpc.toml
 ```
 
 Compose example:
@@ -23,7 +23,7 @@ frp:
     ports:
         - "7000:7000"
     volumes:
-        - ./frpc.ini:/etc/frpc.ini
-    command: frpc -c /etc/frpc.ini
+        - ./frpc.ini:/etc/frpc.toml
+    command: frpc -c /etc/frpc.toml
   restart: always
 ```
