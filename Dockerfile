@@ -1,14 +1,14 @@
-FROM alpine:latest
-LABEL maintainer="unionkx"
-ENV FRP_VERSION=0.71.0
-RUN cd /root \
-    &&  wget --no-check-certificate -c https://github.com/fatedier/frp/releases/download/v${FRP_VERSION}/frp_${FRP_VERSION}_linux_amd64.tar.gz \
-    &&  tar zxvf frp_${FRP_VERSION}_linux_amd64.tar.gz  \
-    &&  cd frp_${FRP_VERSION}_linux_amd64/ \
-    &&  cp frpc /usr/bin/ \
-    &&  mkdir -p /etc/frp \
-    &&  cp frpc.ini /etc/frp \
-    &&  cd /root \
-    &&  rm frp_${FRP_VERSION}_linux_amd64.tar.gz \
-    &&  rm -rf frp_${FRP_VERSION}_linux_amd64/ 
-ENTRYPOINT ["/usr/bin/frpc", "-c", "/etc/frp/frpc.ini"]
+FROM golang:alpine as builder
+ENV CGO_ENABLED=0
+RUN apk add --no-cache curl build-base git libcap && \
+    git clone https://github.com/fatedier/frp.git /root/frp && \
+    cd /root/frp && \
+    go build -v -ldflags "-s -w" -o /frps ./cmd/frps && \
+    go build -v -ldflags "-s -w" -o /frpc ./cmd/frpc && \
+    ls /frp* | xargs -n1 setcap 'cap_net_bind_service+ep' && \
+    cp ./conf/frp* /etc/
+
+FROM alpine
+COPY --from=builder /frp* /usr/bin/
+COPY --from=builder /etc/frp* /etc/
+CMD ["/usr/bin/frps", "-c", "/etc/frps.ini"]
