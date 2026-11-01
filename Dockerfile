@@ -11,4 +11,4 @@ RUN apk add --no-cache curl build-base git libcap && \
 FROM alpine
 COPY --from=builder /frp* /usr/bin/
 COPY --from=builder /etc/frp* /etc/
-CMD ["/usr/bin/frps", "-c", "/etc/frps.ini"]
+CMD ["/usr/bin/frpc", "-c", "/etc/frpc.ini"]
