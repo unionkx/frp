@@ -13,6 +13,7 @@ docker run \
     -p 7000:7000 \
     -v $(pwd)/frpc.ini:/etc/frpc.ini \
     unionkx/frp \
+    frpc -c /etc/frpc.ini
 ```
 
 Compose example:
